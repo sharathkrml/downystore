@@ -9,7 +9,7 @@
             <img src="{{product.image}}" style="width:100%" data-src>
               <h3>{{product.name}}</h3>
               <p class="price">₹{{product.price}}</p>
-              <p><a href="{{product.slug}}">Learn More</a></p>
+              <p><a href="{% url 'product_url' %}{{product.slug}}">Learn More</a></p>
            </div>
            {% endfor %}
       </div>

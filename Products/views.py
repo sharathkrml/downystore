@@ -21,5 +21,14 @@ def getnavbar(request):
 
 def category(request):
     cat_slug=request.GET.get('cat')
-    products=Product.objects.filter(category=Category.objects.filter(slug=cat_slug).first())
-    return render(request,'Products/category.html',{'products':products})
+    category=Category.objects.filter(slug=cat_slug).first()
+    products=Product.objects.filter(category=category)
+    return render(request,'Products/category.html',{'title':category,'products':products})
+
+def product(request,slug):
+    #http://127.0.0.1:8000/product/reebok-basketball-question-mid-shoes/
+    for i in Product.objects.all():
+        if(i.slug==slug):
+            the_product=i
+    return render(request,'Products/product.html',{'product':the_product,'title':the_product.name})
+
