@@ -14,6 +14,7 @@
     <link rel="stylesheet" href="{% static 'Products/css/style.css'%}" />
     <link rel="stylesheet" href="{% static 'Products/css/navbar.css'%}" />
     <link rel="stylesheet" href="{% static 'Products/css/checkout.css'%}">
+    <script src="{% static 'Products/js/navbar.js'%}"></script>
     <link
       href="https://fonts.googleapis.com/css?family=Montserrat:400,700&display=swap"
       rel="stylesheet"
@@ -26,6 +27,12 @@
       crossorigin="anonymous"
     />
     <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script> -->
+   <script>
+     $(window).on('load',function() {
+      nav_url = "{% url 'getnavbar' %}"
+      rendernav();
+     })
+   </script>
   </head>
   <body>
     <div class="se-pre-con"></div>
