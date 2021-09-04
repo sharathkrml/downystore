@@ -1,0 +1,177 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Downy Store</title>
+    <link rel="shortcut icon" type="image/x-icon" href="{%static 'Products/image/img-DS.png'%}" />
+    <script
+			  src="https://code.jquery.com/jquery-3.6.0.js"
+			  integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="
+			  crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="{% static 'Products/css/style.css'%}" />
+    <link rel="stylesheet" href="{% static 'Products/css/navbar.css'%}" />
+    <link rel="stylesheet" href="{% static 'Products/css/checkout.css'%}">
+    <link
+      href="https://fonts.googleapis.com/css?family=Montserrat:400,700&display=swap"
+      rel="stylesheet"
+    />
+    <!-- <link rel="stylesheet" href="{% static 'Products/css/preloader.css'%}" /> -->
+    <link
+      rel="stylesheet"
+      href="https://use.fontawesome.com/releases/v5.6.3/css/all.css"
+      integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/"
+      crossorigin="anonymous"
+    />
+    <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script> -->
+  </head>
+  <body>
+    <div class="se-pre-con"></div>
+    <header  style="background-image: url('static/Products/image/bg5.jpg');" id="home">
+      <nav>
+        <ul class="content">
+          <li class="primary-nav">
+            <img src="{%static 'Products/image/img-DS.png'%}" alt="logo" />
+            <a href="{% url 'home' %}">DOWNY STORE</a>
+          </li>
+          <li class="secondary-nav">
+            <a href="#">
+              <i class="fas fa-shopping-cart"></i> CART
+            </a>
+          </li>
+          
+          <li class="secondary-nav">
+            {% if user.is_authenticated  %}
+            <a href="#">{{user|title}}</a>
+            <div class="megamenu" style="height: 64px; width: 180px;">
+              <span>
+                <a href="#">Profile</a>
+                <a href="#">Logout</a>
+              </span>
+            </div>
+          {% else %}
+          <a href="#">Login</a>
+          <div class="megamenu" style="height: 64px; width: 180px;">
+            <span>
+              <a href="#">Login</a>
+              <a href="#">Signup</a>
+            </span>
+          </div>
+          {% endif %}
+          </li>
+          <li class="secondary-nav" >
+              <a href="#">SPORT</a>
+            <div class="megamenu" style="height: 140px; width: 180px;">
+              <span id='navbar-sport'>
+              </span>
+            </div>
+          </li>
+          <li class="secondary-nav" ><a href="#">CATEGORIES</a>
+            <div class="megamenu" style="height: 100px; width: 180px;">
+              <span id='navbar-category'>
+              </span>
+            </div>
+          </li>
+          <li class="secondary-nav" ><a href="#">BRANDS</a>
+            <div class="megamenu" style="height: 200px; width: 180px;">
+              <span id='navbar-brand'>
+                </span>
+            </div>
+          </li>
+          
+          <li class="secondary-nav">
+            <a href="{% url 'home' %}">HOME</a>
+          </li>
+        </ul>
+      </nav>
+      <div class="pxtext">
+        <span class="border">
+          DOWNY STORE
+        </span>
+      </div>
+    </header>
+    <section>
+      <div
+        class="row"
+        style="width: 80%;
+      margin: 0 auto;"
+      >
+        <div class="col">
+          <div class="overlay-image">
+            <a href="#">
+              <img class="image" src="{% static 'Products/image/fish1.jpg' %}" alt="Alt text" />
+              <div class="normal">
+                <div class="text">Fish</div>
+              </div>
+              <div class="hover">
+                <img
+                  class="image"
+                  src="{% static 'Products/image/fish2.jpg' %}"
+                  alt="Alt text hover"
+                />
+                <div class="text">Fresh Fish</div>
+              </div>
+            </a>
+          </div>
+        </div>
+        <div class="col">
+          <div class="overlay-image">
+            <a href="#">
+              <img
+                class="image"
+                src="{% static 'Products/image/prawn.jpg' %}"
+                alt="Alt text"
+              />
+              <div class="normal">
+                <div class="text">Prawn</div>
+              </div>
+              <div class="hover">
+                <img
+                  class="image"
+                  src="{% static 'Products/image/prawn2.jpg' %}"
+                  alt="Alt text hover"
+                />
+                <div class="text">Prawn</div>
+              </div>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section class="preview">
+      <h2 align="center">Our Products </h2>
+      <div
+        class="row"
+        style="width: 80%;
+      margin: 0 auto;"
+      >
+        <figure class="item">
+          <a href="#">
+            <img src="{% static 'Products/image/egg.jpg' %}" alt="" width="100%" />
+            <figcaption>Egg</figcaption>
+          </a>
+        </figure>
+        <figure class="item">
+          <a href="#">
+            <img class="category-image" src="{% static 'Products/image/meat.jpg' %}" alt="" height="5%" width="100%" />
+            <figcaption>Meat</figcaption>
+          </a>
+        </figure>
+        <figure class="item">
+          <a href="#">
+            <img src="{% static 'Products/image/seafood.jpg' %}" width="100%" />
+            <figcaption>Seafood</figcaption>
+          </a>
+        </figure>
+        <figure class="item">
+          <a href="#">
+            <img src="{% static 'Products/image/chicken.jpg' %}" alt="" width="100%" />
+            <figcaption>Chicken</figcaption>
+          </a>
+        </figure>
+      </div>
+    </section>
+  </body>
+</html>
