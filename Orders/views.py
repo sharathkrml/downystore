@@ -42,19 +42,21 @@ def addtocart(request):
     if(request.method=='POST'):
         if(request.user.is_authenticated):
             product_id=request.POST.get('product_id')
+            quantity=int(request.POST.get('quantity'))
             if(product_id):
                 the_product =Product.objects.get(pk=product_id)
                 product_cart=Cart.objects.filter(product_id=the_product)
                 if(len(product_cart.filter(ordered=False))==0):
                     new_cart=Cart(
                         product_id=the_product,
-                        user_id=request.user
+                        user_id=request.user,
+                        quantity=quantity
                     )
                     new_cart.save()
                     return JsonResponse({'status':'Product added to cart'})  
                 else:
                     old_cart=product_cart.filter(ordered=False).first()
-                    old_cart.quantity=old_cart.quantity+1
+                    old_cart.quantity=old_cart.quantity+quantity
                     old_cart.save()
                     return JsonResponse({'status':'Product already in cart,quantity added'})    
         else:

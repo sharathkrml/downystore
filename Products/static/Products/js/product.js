@@ -1,8 +1,9 @@
 function addtocart(){
+    quantity=document.getElementById('quantity').value
     $.ajax({
       url:addtocart_url,
       method:'post',
-      data:{'product_id':product_id,'csrfmiddlewaretoken':csrf_token},
+      data:{'product_id':product_id,'quantity':quantity,'csrfmiddlewaretoken':csrf_token},
       success:function(res){
           modal.style.display = "block";
           modal_body.innerHTML="<p>"+res.status+"</p>"

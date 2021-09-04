@@ -4,11 +4,13 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="shortcut icon" type="image/x-icon" href="../Images/img-DS.png" />
+    <link rel="shortcut icon" type="image/x-icon" href="{% static 'Products/image/img-DS.png' %}" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <title>Checkout</title>
     <link rel="stylesheet" href="{% static 'Orders/css/checkout.css'%}" />
     <link rel="stylesheet" href="{% static 'Products/css/modal.css'%}" />
+    <script src="{% static 'Products/js/navbar.js'%}"></script>
+
     <script>
       url = "{% url 'cart' %}"
       confirmation_url = "{% url 'confirmation' %}"
@@ -36,7 +38,7 @@
     // Animate loader off screen
     nav_url = "{% url 'getnavbar' %}"
     category_url ="{% url 'category'%}"
-    rendernavbar();
+    rendernav();
     });
 
   </script>
@@ -48,7 +50,7 @@
       <nav>
         <ul class="content">
           <li class="primary-nav">
-            <img src="../Images/img-DS.png" alt="logo" />
+            <img src="{% static 'Products/image/img-DS.png' %}" alt="logo" />
             <a href="{% url 'home' %}">DOWNY SHOES</a>
           </li>
           <li class="secondary-nav">
