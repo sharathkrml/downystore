@@ -1,0 +1,119 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="shortcut icon" type="image/x-icon" href="{% static 'Products/image/img-DS.png' %}" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    {% if title %}
+        <title>{{title|title}}</title>
+    	{% else %}
+        <title>HOME</title>
+    	{% endif %}
+    <link rel="stylesheet" href="{% static 'Products/css/men.css'%}" />
+    <link rel="stylesheet" href="{% static 'Products/css/info.css'%}" />
+    <link rel="stylesheet" href="{% static 'Products/css/navbar.css'%}" />
+    <link rel="stylesheet" href="{% static 'Products/css/modal.css'%}" />
+    <script src="{% static 'Products/js/navbar.js'%}"></script>
+
+
+    <link
+      href="https://fonts.googleapis.com/css?family=Montserrat:400,700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://use.fontawesome.com/releases/v5.6.3/css/all.css"
+      integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/"
+      crossorigin="anonymous"
+    />
+    <script
+			  src="https://code.jquery.com/jquery-3.6.0.js"
+			  integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="
+			  crossorigin="anonymous"></script>
+    <script>
+      $(window).on('load',function() {
+      nav_url = "{% url 'getnavbar' %}"
+      category_url = "{% url 'category' %}"
+      rendernav();
+      });
+    </script>
+  </head>
+  <body>
+    <nav>
+      <ul class="content">
+        <li class="primary-nav">
+          <img src="{%static 'Products/image/img-DS.png'%}" alt="logo" />
+          <a href="{% url 'home' %}">DOWNY SHOES</a>
+        </li>
+        <li class="secondary-nav">
+          <a href="#">
+            <i class="fas fa-shopping-cart"></i> CART
+          </a>
+        </li>
+        
+        <li class="secondary-nav">
+          {% if user.is_authenticated  %}
+            <a href="#">{{user|title}}</a>
+            <div class="megamenu" style="height: 64px; width: 180px;">
+              <span>
+                <a href="#">Profile</a>
+                <a href="#">Logout</a>
+              </span>
+            </div>
+          {% else %}
+          <a href="#">Login</a>
+          <div class="megamenu" style="height: 64px; width: 180px;">
+            <span>
+              <a href="#">Login</a>
+              <a href="#">Signup</a>
+            </span>
+          </div>
+          {% endif %}
+        </li>
+        <li class="secondary-nav" >
+          <a href="#">SEA FOOD</a>
+        <div class="megamenu" style="height: 140px; width: 180px;">
+          <span id='navbar-seafood'>
+          </span>
+        </div>
+      </li>
+      <li class="secondary-nav" ><a href="#">MEAT</a>
+        <div class="megamenu" style="height: 100px; width: 180px;">
+          <span id='navbar-meat'>
+          </span>
+        </div>
+      </li>
+      <li class="secondary-nav" ><a href="#">EGG</a>
+        
+      </li>
+      
+        <li class="secondary-nav">
+          <a href="{% url 'home' %}">HOME</a>
+        </li>
+      </ul>
+    </nav>
+
+<!-- The Modal -->
+<div id="myModal" class="modal">
+
+  <!-- Modal content -->
+  <div class="modal-content">
+    <div class="modal-header">
+      <h2 id="modal-header"></h2>
+    </div>
+    <div id='modal-body' class="modal-body">
+      
+    </div>
+    <div style="text-align: center;" class="modal-footer">
+      <button id='modal-yes-button'>Yes</button>
+      <button id='modal-cancel-button'>Cancel</button>
+    </div>
+  </div>
+
+</div>
+    {% block content %}{% endblock %}
+    
+  </body>
+</html>

@@ -7,14 +7,19 @@ def home(request):
 
 def getnavbar(request):
     meat_dict={
-        'POULTRY':'?category=poultry',
-        'MUTTON':'?category=mutton',
-        'PORK':'?category=pork',
+        'POULTRY':'?cat=poultry',
+        'MUTTON':'?cat=mutton',
+        'PORK':'?cat=pork',
     }
     seafood_dict={
-        'CANNED SEAFOOD':'?category=canned-seafood',
-        'FRESH FISH':'?category=fresh-fish',
-        'SEA FOOD':'?category=seafood',
-        'PRAWN':'?category=prawn'
+        'CANNED SEAFOOD':'?cat=canned-seafood',
+        'FRESH FISH':'?cat=fresh-fish',
+        'SEA FOOD':'?cat=seafood',
+        'PRAWN':'?cat=prawn'
     }
     return JsonResponse({'meat_dict':meat_dict,'seafood_dict':seafood_dict})
+
+def category(request):
+    cat_slug=request.GET.get('cat')
+    print(cat_slug)
+    return render(request,'Products/category.html')
