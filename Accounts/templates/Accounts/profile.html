@@ -1,0 +1,38 @@
+{% extends 'Products/base.html' %}
+{% load static %}
+{% block content %}
+<link rel="stylesheet" href="{% static 'Accounts/css/profile.css'%}" />
+<div id='messagediv'>
+    
+</div>
+<div class="sidenav">
+  <div style="padding-bottom: 20px;padding-left: 17px;padding-top: 7px;">Hello, {{user}}</div>
+  <a href="{% url 'myorders' %}">My Orders</a>  
+  <a  style="color: blue;" href="{% url 'profile' %}">Profile Information</a>
+    <a href="{% url 'address' %}">Manage Addresses</a>
+    <a href="{% url 'cards' %}">Manage Cards</a>
+  </div>
+  
+  <div class="main">
+    <div class="main-area">
+        {% csrf_token %}
+        <label class="profile-input" for="username"
+          >Username  <button onclick="toggleusername()">Edit</button><button style="visibility: hidden;" id='changeusernamebutton' onclick="changeusername()">Save</button>
+          <input class="profile-input" type="text" name="username" id="username" value='{{user}}' disabled/>
+        </label>
+        <label class="profile-input" for="email"
+          >Email  <button onclick="toggleemail()">Edit</button><button  style="visibility: hidden;" id='changeemailbutton' onclick="changeemail()">Save</button>
+          <input class="profile-input" type="text" name="email" id="email" value="{{user.email}}" disabled/></label>
+        <label class="profile-input" for="phone"
+          >Phone  <button onclick="togglephone()">Edit</button><button style="visibility: hidden;" id='changephonebutton' onclick="changephone()">Save</button>
+          <input class="profile-input" type="phone" name='phone' id='phone' value='{{phone}}' disabled>
+        </label>
+        </div>
+    </section>
+    <script>
+      url="{% url 'profile' %}"
+      csrf_token = document.getElementsByName('csrfmiddlewaretoken')[0].value
+      </script>
+      <script src="{% static 'Accounts/js/profile.js' %}"></script>
+  </div>  
+{% endblock %}

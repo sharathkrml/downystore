@@ -1,0 +1,74 @@
+{% extends 'Products/base.html' %}
+{% load static %}
+{% block content %}
+<link rel="stylesheet" href="{% static 'Accounts/css/profile.css'%}" />
+<link rel="stylesheet" href="{% static 'Accounts/css/address.css'%}" />
+<div class="sidenav">
+  <div style="padding-bottom: 20px;padding-left: 17px;padding-top: 7px;">Hello, {{user}}</div>
+  <a style="color: blue;" href="{% url 'myorders' %}">My Orders</a>
+  <a href="{% url 'profile' %}">Profile Information</a>
+  <a  href="{% url 'address' %}">Manage Addresses</a>
+  <a href="{% url 'cards' %}">Manage Cards</a>
+</div>
+<style>
+  
+</style>
+  
+  <div class="main">
+    <div class="main-area">
+      <section id='addresses-section' style="display: block;" class="addresses_section">
+      <div>
+        <div>
+          {% for order in orders %}
+          <div class="address_component">
+            {% for cart in order.cart_ids.all %}
+            <a href="{% url 'product_url' %}{{cart.product_id.slug}}"><span>{{cart.product_id|truncatechars_html:20}} x {{cart.quantity}} </span></a>
+            <span style="padding-left: 200px;">Price:  {{cart.total_price}}</span> 
+            <br/>
+            {% endfor %}
+            <span>
+              Order Date:  {{order.order_date}} <span style="padding-left: 129px;">Total Amt: {{order.total_price}}</span>
+            </span>
+            <br/>
+            <br/>
+            <span>
+              Name: {{order.address_id.name}}  <span style="padding-left: 100px;">Order id: {{order.id}}</span>
+            </span>
+            <br/>
+            <span>
+              Phone: {{order.address_id.phone}}  <span style="padding-left: 100px;">Order Status: {{order.delivery_status}}</span>
+            </span>
+            <br/>
+            <span>
+              Address: {{order.address_id.address}}
+            </span>
+            <br/>
+            <span>
+              Pin : {{order.address_id.pincode}}
+            </span>
+            
+          </div>
+          <hr/>
+          {% endfor %}
+        </div>
+      </div>
+    </section>
+</head>
+<body>
+
+<!-- <h2>Bottom Modal</h2>
+
+Trigger/Open The Modal
+<button id="myBtn">Open Modal</button> -->
+
+
+<script>
+  url="{% url 'address' %}"
+  address_edit_url = "{% url 'address_edit' %}"
+  csrf_token = '{{csrf_token}}'
+</script>
+<script src="{% static 'Accounts/js/address.js' %}"></script>
+
+
+    </div>  
+{% endblock %}

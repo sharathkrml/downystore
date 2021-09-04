@@ -45,7 +45,7 @@
             <a href="{% url 'home' %}">DOWNY STORE</a>
           </li>
           <li class="secondary-nav">
-            <a href="#">
+            <a href="{% url 'cart' %}">
               <i class="fas fa-shopping-cart"></i> CART
             </a>
           </li>
@@ -55,16 +55,16 @@
             <a href="#">{{user|title}}</a>
             <div class="megamenu" style="height: 64px; width: 180px;">
               <span>
-                <a href="#">Profile</a>
-                <a href="#">Logout</a>
+                <a href="{% url 'profile' %}">Profile</a>
+                <a href="{% url 'logout' %}">Logout</a>
               </span>
             </div>
           {% else %}
           <a href="#">Login</a>
           <div class="megamenu" style="height: 64px; width: 180px;">
             <span>
-              <a href="#">Login</a>
-              <a href="#">Signup</a>
+              <a href="{% url 'login' %}">Login</a>
+              <a href="{% url 'signup' %}">Signup</a>
             </span>
           </div>
           {% endif %}

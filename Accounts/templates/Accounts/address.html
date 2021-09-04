@@ -1,0 +1,141 @@
+{% extends 'Products/base.html' %}
+{% load static %}
+{% block content %}
+<link rel="stylesheet" href="{% static 'Accounts/css/profile.css'%}" />
+<link rel="stylesheet" href="{% static 'Accounts/css/address.css'%}" />
+<div class="sidenav">
+  <div style="padding-bottom: 20px;padding-left: 17px;padding-top: 7px;">Hello, {{user}}</div>
+  <a href="{% url 'myorders' %}">My Orders</a>  
+  <a href="{% url 'profile' %}">Profile Information</a>
+  <a style="color: blue;" href="{% url 'address' %}">Manage Addresses</a>
+  <a href="{% url 'cards' %}">Manage Cards</a>
+</div>
+<style>
+  
+</style>
+  
+  <div class="main">
+    <div class="main-area">
+      <form style="display: none;" id='address-form' method="POST">
+        {% csrf_token %}
+        <table style="width: 100%;">
+          <tr>
+            <td>
+              <span class="form-first-name"  style="float:left">
+                  <input type="text" id='name' name="name" placeholder="name" required/></span>
+              <span class="form-last-name" style="float:right">
+                  <input type="text" id='phone' pattern="[0-9]+" title='Enter valid Phone No' name="phone" placeholder="phone" required /></span>
+          </td>
+          </tr>
+          <tr>
+            <td>
+                <span class="form-first-name"  style="float:left">
+                    <input type="text" id='pincode' pattern="[0-9]{6}" title='Enter valid pincode' name="pincode" placeholder="pincode" required/></span>
+                <span class="form-last-name" style="float:right">
+                    <input type="text" id='landmark' name="landmark" placeholder="landmark" /></span>
+            </td>
+        </tr>
+          <tr>
+              <td>
+                  <textarea name="address" id='address' class="form-address-1" placeholder="address" required></textarea>
+              </td>
+          </tr>
+          <tr>
+            <td>
+              <span class="form-first-name"  style="float:left">
+                  <input type="text" name="city" placeholder="city" id='city' required/></span>
+              <span class="form-last-name" style="float:right">
+                <select style="font-size: 50%;width: 100%;" name="state" id="state" required>
+                  <option value="Andhra Pradesh">Andhra Pradesh</option>
+                  <option value="Andaman and Nicobar Islands">Andaman and Nicobar Islands</option>
+                  <option value="Arunachal Pradesh">Arunachal Pradesh</option>
+                  <option value="Assam">Assam</option>
+                  <option value="Bihar">Bihar</option>
+                  <option value="Chandigarh">Chandigarh</option>
+                  <option value="Chhattisgarh">Chhattisgarh</option>
+                  <option value="Dadar and Nagar Haveli">Dadar and Nagar Haveli</option>
+                  <option value="Daman and Diu">Daman and Diu</option>
+                  <option value="Delhi">Delhi</option>
+                  <option value="Lakshadweep">Lakshadweep</option>
+                  <option value="Puducherry">Puducherry</option>
+                  <option value="Goa">Goa</option>
+                  <option value="Gujarat">Gujarat</option>
+                  <option value="Haryana">Haryana</option>
+                  <option value="Himachal Pradesh">Himachal Pradesh</option>
+                  <option value="Jammu and Kashmir">Jammu and Kashmir</option>
+                  <option value="Jharkhand">Jharkhand</option>
+                  <option value="Karnataka">Karnataka</option>
+                  <option value="Kerala">Kerala</option>
+                  <option value="Madhya Pradesh">Madhya Pradesh</option>
+                  <option value="Maharashtra">Maharashtra</option>
+                  <option value="Manipur">Manipur</option>
+                  <option value="Meghalaya">Meghalaya</option>
+                  <option value="Mizoram">Mizoram</option>
+                  <option value="Nagaland">Nagaland</option>
+                  <option value="Odisha">Odisha</option>
+                  <option value="Punjab">Punjab</option>
+                  <option value="Rajasthan">Rajasthan</option>
+                  <option value="Sikkim">Sikkim</option>
+                  <option value="Tamil Nadu">Tamil Nadu</option>
+                  <option value="Telangana">Telangana</option>
+                  <option value="Tripura">Tripura</option>
+                  <option value="Uttar Pradesh">Uttar Pradesh</option>
+                  <option value="Uttarakhand">Uttarakhand</option>
+                  <option value="West Bengal">West Bengal</option>
+                  </select>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <span class="form-first-name small-font"  style="float:left">
+                home<input style="margin-left: -34px;" type="radio" id='home' value="home" name="address_type" />
+                work<input style="margin-left: -34px;" type="radio" id='work' value="work" name="address_type" />
+            </span>
+        </td>
+      </tr>
+    </table>
+    <button style="display: block;" id='submitaddressbutton' onclick='submitnewaddress()' type="button">Submit</button>
+    <button style="display: block;float: right;" id='canceladdressbutton' onclick='canceladdress()' type="button">Cancel</button>
+    <button style="display: none;" id='editaddress' type="button">Save Changes</button>
+    </form> 
+      <section id='addresses-section' style="display: block;" class="addresses_section">
+      <h6 id='add-address-h6' onclick="showaddform()" style="margin-left:250px;margin-top: -23.289px;margin-bottom: 0px;"><u>add address</u></h6>
+      <hr/>
+      <div>
+        <div>
+          {% for address in addresses %}
+          <div class="address_component">
+            <p>
+              <span>{{address.name}}</span>
+              <span>{{address.phone}}</span>
+              <span onclick="opendeletemodal('{{address.id}}')"  class="deleteaddress"> <u>delete</u></span>
+              <span onclick="editaddressdata('{{address.id}}')"; class="editaddress" ><u>edit</u> </span>
+            </p>
+            <span><div>{{address.address}} - {{address.state}}</div>
+              <div style="margin-left: 5px;">pin:{{address.pincode}}</div>
+            </span>
+          </div>
+          <hr/>
+          {% endfor %}
+        </div>
+      </div>
+    </section>
+</head>
+<body>
+
+<!-- <h2>Bottom Modal</h2>
+
+Trigger/Open The Modal
+<button id="myBtn">Open Modal</button> -->
+
+
+<script>
+  url="{% url 'address' %}"
+  address_edit_url = "{% url 'address_edit' %}"
+  csrf_token = '{{csrf_token}}'
+</script>
+<script src="{% static 'Accounts/js/address.js' %}"></script>
+
+
+    </div>  
+{% endblock %}

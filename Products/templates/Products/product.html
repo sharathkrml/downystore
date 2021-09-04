@@ -18,7 +18,14 @@
         <button class="button-cart" onclick="addtocart()">Add to cart</button>
       </div>
     </div>
-    
+    <script>
+      addtocart_url="{% url 'addtocart' %}"
+      login_url="{% url 'login' %}"
+      cart_url="{% url 'cart' %}"
+      product_id="{{product.id}}"
+      csrf_token="{{csrf_token}}"
+      
+    </script>
     <script src="{% static 'Products/js/product.js' %}"></script>
   </section>
   {% endblock %}

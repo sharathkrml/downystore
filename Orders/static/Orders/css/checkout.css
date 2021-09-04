@@ -1,0 +1,298 @@
+body,
+html {
+  height: 100%;
+  margin: 0;
+  font-family: "Montserrat";
+  max-width: 100%;
+}
+
+nav > ul > li {
+  display: inline-block;
+}
+
+nav {
+  background-color: white;
+  overflow: auto;
+  padding: 10px 10px 20px 10px;
+  margin: 10 10 10 10;
+}
+
+nav::after {
+  content: "";
+  clear: both;
+  display: table;
+}
+
+.primary-nav {
+  float: left;
+  font-size: 20px;
+}
+
+.primary-nav > a {
+  letter-spacing: 5px;
+}
+
+.primary-nav > img {
+  width: 30px;
+}
+
+.secondary-nav > a {
+  letter-spacing: 1px;
+  color: rgba(0, 0, 0, 0.6);
+  font-size: 15px;
+  letter-spacing: 3px;
+}
+
+.megamenu .secondary-nav :hover {
+  visibility: visible;
+}
+
+.megamenu {
+  background: rgb(253, 251, 253) none repeat scroll 0 0;
+  box-shadow: 0 1px 7px -2px rgba(0, 0, 0, 0.3);
+  padding: 15px 10px;
+  position: fixed;
+  width: 400px;
+  height: 200px;
+  transition: all.5s;
+  transform: scaleY(0);
+  opacity: 0;
+  display: flex;
+  flex-direction: column;
+  visibility: hidden;
+  backface-visibility: visible;
+  transform-origin: 0 0 0;
+  z-index: 5000;
+}
+
+.megamenu > span {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+}
+
+.megamenu > span > a {
+  margin: 10px;
+  color: #000;
+  font-size: 13px;
+  font-weight: 900;
+}
+
+.content li:hover > a,
+.content li.active > a {
+  color: rgb(0, 0, 0);
+  font-weight: bold;
+  font-size: 17px;
+}
+
+.content li .megamenu span a:hover {
+  color: rgb(57, 9, 112);
+  font-size: 15px;
+  font-weight: bold;
+}
+
+.content li:hover .megamenu {
+  opacity: 1;
+  transform: scaleY(1);
+  visibility: visible;
+}
+
+.secondary-nav {
+  float: right;
+  margin-right: 10px;
+  margin-left: 10px;
+  font-size: 20px;
+}
+
+.category ul li .megamenu span {
+  width: 100%;
+  float: left;
+  padding: 0 18px;
+  text-align: left;
+}
+.category ul li .megamenu span a.megatitle {
+  border-bottom: 1px solid #dddddd;
+  color: #333333;
+  font-size: 15px;
+  font-weight: 900;
+  margin-bottom: 15px;
+  text-transform: uppercase;
+  text-align: left;
+}
+.category ul li .megamenu span a {
+  color: #080808;
+  font-size: 14px;
+  font-weight: 400;
+  padding: 7px 0;
+  text-transform: capitalize;
+  overflow: hidden;
+  margin: 5px 0;
+}
+.category ul li .megamenu span a:hover {
+  color: #5e129c;
+  transition: none;
+}
+
+/* top */
+
+.category ul li a {
+  color: #030303;
+  display: block;
+  font-size: 14px;
+  font-weight: 900;
+  line-height: 25px;
+  padding: 22px 18px;
+  position: relative;
+  text-transform: uppercase;
+  transition: all.3s;
+}
+.category ul li:hover > a,
+.category ul li.active > a {
+  color: #696969;
+}
+.category ul li ul {
+  background: #ffffff none repeat scroll 0 0;
+  left: 0;
+  padding: 15px 10px;
+  position: absolute;
+  top: 100%;
+  width: 230px;
+  z-index: 111;
+  text-align: left;
+  opacity: 0;
+  transform: scaleY(0);
+  transform-origin: 0 0 0;
+  visibility: hidden;
+  transition: all 0.5s;
+  box-shadow: 0 1px 7px -2px rgba(0, 0, 0, 0.3);
+}
+.category ul li:hover > ul {
+  opacity: 1;
+  transform: scaleY(1);
+  visibility: visible;
+}
+.category ul li > ul li {
+  display: block;
+}
+.category ul li > ul li > a {
+  color: #080808;
+  padding: 6px 0;
+  text-transform: capitalize;
+  font-weight: 500;
+}
+.category ul li > ul li > a:hover {
+  color: #000000;
+  transition: none;
+}
+
+nav > ul > li > a {
+  color: black;
+  font-family: helvetica;
+  text-decoration: none;
+}
+
+nav > ul > li > a:hover {
+  color: #cb4335;
+}
+
+section > h1 {
+  font-size: 60px;
+  margin: 20px 0 0 35px;
+}
+
+.row {
+  display: flex;
+  margin: 0 60px 0 60px;
+}
+
+.row > .column {
+  width: 70%;
+}
+
+.row > .column2 {
+  position: fixed;
+  width: 30%;
+  right: 0;
+  bottom: 25%;
+}
+
+.cart-item {
+  margin: 0 0 10px 0;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+
+img {
+  width: 10%;
+}
+
+input {
+  font-weight: bold;
+  text-align: center;
+  background: rgb(36, 35, 35);
+  color: white;
+  font-size: 20px;
+  height: 25px;
+  margin: 16px 0;
+  border: 0px;
+  border-radius: 4px;
+}
+
+.row1 {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin-right: 30%;
+}
+
+.wrapper {
+  display: flex;
+  flex-direction: column;
+}
+
+.buttons {
+  display: flex;
+  flex-direction: column;
+}
+
+.buttons > a {
+  text-decoration: none;
+}
+
+.button-checkout {
+  border: 1px solid black;
+  background-color: black;
+  text-align: center;
+  color: white;
+  border-radius: 16px;
+  padding: 10px 0 10px 0;
+  margin-bottom: 10px;
+}
+
+.cancel {
+  color: black;
+}
+
+.button-checkout:hover {
+  color: black;
+  background-color: white;
+}
+
+.remove {
+  background: none;
+  border: none;
+  height: auto;
+}
+
+.remove:hover {
+  color: #cb4335;
+}
+.address_component,.card-component{
+  border-width: 1px; 
+  border-style: solid;
+box-shadow: 1px 2px 8px black;
+padding-bottom: 5px;
+margin-bottom: 2px;
+}

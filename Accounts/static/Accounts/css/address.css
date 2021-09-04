@@ -1,0 +1,45 @@
+.deleteaddress,.deletecard{
+    float: right;
+}
+.deleteaddress:hover,.deletecard:hover{
+    color: blue;
+    cursor: pointer;
+}
+.editaddress,.editcard{
+    float: right;
+    margin-right: 5px;
+}
+.editaddress:hover,.editcard:hover{
+    color: blue;
+    cursor: pointer;
+}
+.address_component,.card-component{
+    font-size: small;
+}
+
+.addresses_section{
+    margin: 0;
+}
+.form-address-1 {
+	width: 100%;
+}
+
+.form-first-name, .form-last-name {
+	width: 46%;
+}
+
+.form-last-name {
+	float: right;
+}
+input{
+    width: 100%;
+}
+.small-font{
+    font-size: 20px;
+}
+#add-address-h6{
+    cursor: pointer;
+}
+#add-address-h6:hover{
+    color: blue;
+}

@@ -1,0 +1,86 @@
+body {
+    font-family: "Lato", sans-serif;
+  }
+  
+  .sidenav {
+      box-shadow: 2px 1px 10px 1px rgba(0, 0, 0, 0.6);
+      margin-top: 114px;
+      width: 200px;
+      position: fixed;
+      z-index: 1;
+      top: 20px;
+      left: 10px;
+      overflow-x: hidden;
+      padding: 8px 0;
+      }
+  
+  .sidenav a {
+    padding: 6px 8px 6px 16px;
+    text-decoration: none;
+    font-size: 20px;
+    color: black;
+    display: block;
+  }
+  
+  .sidenav a:hover {
+    color: #064579;
+  }
+  
+  .main {
+    margin-left: 140px; /* Same width as the sidebar + left position in px */
+    font-size: 28px; /* Increased text to enable scrolling */
+    padding: 0px 10px;
+  }
+  
+  @media screen and (max-height: 450px) {
+    .sidenav {padding-top: 15px;}
+    .sidenav a {font-size: 18px;}
+  }
+  .alert-success{
+    background-color: #86e89e;
+      text-align: center;
+  }
+  .alert-warning{
+      background-color: #f98d8d;
+      text-align: center;
+  }
+  section {
+    margin: 0% 20%;
+    height: 100%;
+    font-family: "Montserrat";
+  }
+
+  .profile-input {
+    display: block;
+    width: 100%;
+  }
+  label {
+    font-weight: bold;
+    font-size: 20px;
+  }
+  textarea {
+    max-width: 100%;
+    width: 100%;
+    height: 100px;
+  }
+  .main-area {
+    padding: 30px;
+    box-shadow: 2px 1px 10px 1px rgba(0, 0, 0, 0.6);
+    margin-left: 10%;
+    margin-top: 5%;
+    width: 80%;
+  }
+  input {
+    height: 25px;
+    padding: 2px;
+    margin-bottom: 10px;
+  }
+  nav {
+    position: relative;
+  }
+  button{
+    margin-bottom: 6px;
+  }
+  .deletecard,.editcard{
+    float: right;
+  }

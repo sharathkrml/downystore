@@ -1,0 +1,169 @@
+{% extends 'Products/base.html' %} {% load static %} {% block content %}
+<link rel="stylesheet" href="{% static 'Accounts/css/profile.css'%}" />
+<link rel="stylesheet" href="{% static 'Accounts/css/address.css'%}" />
+<div class="sidenav">
+  <div style="padding-bottom: 20px;padding-left: 17px;padding-top: 7px;">Hello, {{user}}</div>
+  <a href="{% url 'myorders' %}">My Orders</a>  
+  <a href="{% url 'profile' %}">Profile Information</a>
+  <a href="{% url 'address' %}">Manage Addresses</a>
+  <a style="color: blue" href="{% url 'cards' %}">Manage Cards</a>
+</div>
+
+<div class="main">
+  <div class="main-area">
+    <div style="display: none" id="address-form">
+      {% csrf_token %}
+      <label for="name_on_card"
+        >Name on card
+        <input type="text" name="name_on_card" id="name_on_card" /> </label
+      ><br />
+      <label for="card_number">Card Number </label>
+      <input
+        id="card_number"
+        type="tel"
+        inputmode="numeric"
+        name="card_number"
+        pattern="[0-9\s]{13,19}"
+        maxlength="19"
+        placeholder="xxxx xxxx xxxx xxxx"
+      />
+      <br />
+      <label>Expiry date</label>
+      <select name="expireMM" id="expireMM">
+        <option value="">Month</option>
+        <option value="01">January</option>
+        <option value="02">February</option>
+        <option value="03">March</option>
+        <option value="04">April</option>
+        <option value="05">May</option>
+        <option value="06">June</option>
+        <option value="07">July</option>
+        <option value="08">August</option>
+        <option value="09">September</option>
+        <option value="10">October</option>
+        <option value="11">November</option>
+        <option value="12">December</option>
+      </select>
+      <select name="expireYY" id="expireYY">
+        <option value="">Year</option>
+        <option value="21">2021</option>
+        <option value="22">2022</option>
+        <option value="23">2023</option>
+        <option value="24">2024</option>
+        <option value="25">2025</option>
+      </select>
+      <br />
+      <button
+        style="visibility: visible"
+        id="submitcardbutton"
+        onclick="submitcard()"
+        type="button"
+      >
+        Submit
+      </button>
+      <button
+        style="visibility: visible; float: right"
+        id="cancelcard"
+        onclick="cancelcard()"
+        type="button"
+      >
+        Cancel
+      </button>
+      <button style="visibility: hidden" id="editcardbutton" type="button">
+        Save Changes
+      </button>
+      <script>
+        url = "{% url 'cards' %}";
+        csrf_token = "{{csrf_token}}";
+        function submitcard() {
+          exp_date =
+            document.getElementById("expireMM").value +
+            "/" +
+            document.getElementById("expireYY").value;
+          name_on_card = document.getElementById("name_on_card").value;
+          card_number = document.getElementById("card_number").value;
+          $.ajax({
+            url: url,
+            method: "post",
+            data: {
+              name_on_card: name_on_card,
+              exp_date: exp_date,
+              card_number: card_number,
+              addcard: true,
+              csrfmiddlewaretoken: csrf_token,
+            },
+            success: function (res) {
+              cancelcard();
+              document.getElementById("card-div").innerHTML =
+                document.getElementById("card-div").innerHTML +
+                "<div class='card-component'><p><span>" +
+                res.name_on_card +
+                "</span><span onclick='opendeletemodal(" +
+                res.id +
+                ")' style='margin-left: 5px;' class='deletecard'> <u>delete</u></span><span onclick='editcarddata(" +
+                res.id +
+                ")'; class='editcard' ><u>edit</u> </span></p><span><div>" +
+                res.card_number +
+                "</div><div style='margin-left: 20px;float: right;'>Exp date:" +
+                res.exp_date +
+                "</div></span></div><hr/>";
+              document.getElementById("name_on_card").value = "";
+              document.getElementById("card_number").value = "";
+              document.getElementById("expireMM").value = "";
+              document.getElementById("expireYY").value = "";
+            },
+          });
+        }
+      </script>
+    </div>
+    <section
+      id="addresses-section"
+      style="display: block; width: 100%; margin-left: 0"
+      class="addresses_section"
+    >
+      <h6
+        id="add-address-h6"
+        onclick="showaddform()"
+        style="margin-top: -23.289px; margin-bottom: 0px; text-align: center"
+      >
+        <u>add card</u>
+      </h6>
+      <hr />
+      <div>
+        <div id="card-div">
+          {% for card in cards %}
+          <div class="card-component">
+            <p>
+              <span>{{card.name_on_card}}</span>
+              <span
+                onclick="opendeletemodal('{{card.id}}')"
+                style="margin-left: 5px"
+                class="deletecard"
+              >
+                <u>delete</u></span
+              >
+              <span onclick="editcarddata('{{card.id}}')" ; class="editcard"
+                ><u>edit</u>
+              </span>
+            </p>
+            <span>
+              <div>{{card.card_number}}</div>
+              <div style="margin-left: 20px; float: right">
+                Exp date:{{card.exp_date}}
+              </div>
+            </span>
+          </div>
+          <hr />
+          {% endfor %}
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+    url = "{% url 'cards' %}";
+    csrf_token = "{{csrf_token}}";
+    cards_edit_url = "{% url 'cards_edit' %}";
+  </script>
+  <script src="{% static 'Accounts/js/cards.js' %}"></script>
+</div>
+{% endblock %}
