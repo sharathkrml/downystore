@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.http import JsonResponse
-from .models import Category
+from .models import Category,Product
 # Create your views here.
 def home(request):
     return render(request,'Products/home.html')
@@ -21,5 +21,5 @@ def getnavbar(request):
 
 def category(request):
     cat_slug=request.GET.get('cat')
-    print(cat_slug)
-    return render(request,'Products/category.html')
+    products=Product.objects.filter(category=Category.objects.filter(slug=cat_slug).first())
+    return render(request,'Products/category.html',{'products':products})
