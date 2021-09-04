@@ -105,7 +105,7 @@
       >
         <div class="col">
           <div class="overlay-image">
-            <a href="#">
+            <a href="{% url 'category' %}?cat=fresh-fish">
               <img class="image" src="{% static 'Products/image/fish1.jpg' %}" alt="Alt text" />
               <div class="normal">
                 <div class="text">Fish</div>
@@ -123,7 +123,7 @@
         </div>
         <div class="col">
           <div class="overlay-image">
-            <a href="#">
+            <a href="{% url 'category' %}?cat=prawn">
               <img
                 class="image"
                 src="{% static 'Products/image/prawn.jpg' %}"
@@ -153,25 +153,25 @@
       margin: 0 auto;"
       >
         <figure class="item">
-          <a href="#">
+          <a href="{% url 'category' %}?cat=egg">
             <img src="{% static 'Products/image/egg.jpg' %}" alt="" width="100%" />
             <figcaption>Egg</figcaption>
           </a>
         </figure>
         <figure class="item">
-          <a href="#">
+          <a href="{% url 'category' %}?cat=mutton">
             <img class="category-image" src="{% static 'Products/image/meat.jpg' %}" alt="" height="5%" width="100%" />
-            <figcaption>Meat</figcaption>
+            <figcaption>Mutton</figcaption>
           </a>
         </figure>
         <figure class="item">
-          <a href="#">
+          <a href="{% url 'category' %}?cat=seafood">
             <img src="{% static 'Products/image/seafood.jpg' %}" width="100%" />
             <figcaption>Seafood</figcaption>
           </a>
         </figure>
         <figure class="item">
-          <a href="#">
+          <a href="{% url 'category' %}?cat=poultry">
             <img src="{% static 'Products/image/chicken.jpg' %}" alt="" width="100%" />
             <figcaption>Chicken</figcaption>
           </a>
