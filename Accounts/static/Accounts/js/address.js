@@ -83,6 +83,8 @@ function saveaddress(id) {
 function showaddform() {
   document.getElementById("address-form").reset();
   showform();
+  document.getElementById('editaddress').style.display='none';
+  document.getElementById('submitaddressbutton').style.display='block';
 }
 function showform() {
   document.getElementById("address-form").style.display = "block";
